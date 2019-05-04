@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ToolbarAndroid} from 'react-native';
+import {Platform, StyleSheet, Text, View, Toolbar, Button} from 'react-native';
 import {HomeScreen} from './homescreen.js';
 import { createMaterialTopTabNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation';
 
@@ -28,6 +28,9 @@ class TestScreen extends React.Component {
   }
 }
 class TestScreen2 extends React.Component {
+  static navigationOptions = {
+    drawerLabel: "Screen2"
+  };
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -43,24 +46,22 @@ const MyDrawerNavigator = createAppContainer(createDrawerNavigator({
   Home2: {
     screen: TestScreen2,
   }
+}, {
+  drawerPosition: 'left',
+  initialRouteName: 'Home',
+  drawerWidth: 200
 }));
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    return (
-      <View style={{ flex: 1}}>
-         <ToolbarAndroid
-          title="AwesomeApp"
-        actions={[{title: 'Settings', show: 'always'}]} /> 
-        <MyDrawerNavigator />
-      </View>
-      // <View style={styles.container}>
-      //   <Text style={styles.welcome}>Welcome to React Native!</Text>
-      //   <Text style={styles.instructions}>To get started, edit App.js</Text>
-      //   <Text style={styles.instructions}>{instructions}</Text>
-      // </View>
-    );
+    return <MyDrawerNavigator />;
+    // (
+    //   // <View style={{ flex: 1}}>
+    //     {/* <Toolbar leftElement="arrow-back" centerElement="Icon Toggle" /> */}
+        
+    //   // </View>
+    // );
   }
 }
 
