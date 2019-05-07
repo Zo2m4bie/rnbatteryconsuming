@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, Button } from "react-native";
+import { View, Button } from "react-native";
 import {
   createMaterialTopTabNavigator,
   createAppContainer
@@ -7,11 +7,11 @@ import {
 import { ScreenWithButtons } from "./screenwithbuttons";
 import { ScreenWithAnimatedList } from "./screenanimatedpage";
 
-const TabNavigator = createAppContainer(
+const TabNavigator = createAppContainer(createAppContainer(
   createMaterialTopTabNavigator({
     Test1: { screen: ScreenWithButtons },
     Settings: { screen: ScreenWithAnimatedList }
-  })
+  }))
 );
 
 export class HomeScreen extends Component {

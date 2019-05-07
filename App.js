@@ -7,9 +7,8 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Toolbar, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, DrawerLayoutAndroid} from 'react-native';
 import {HomeScreen} from './homescreen.js';
-import { createMaterialTopTabNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,50 +17,61 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-class TestScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
-class TestScreen2 extends React.Component {
-  static navigationOptions = {
-    drawerLabel: "Screen2"
-  };
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
-const MyDrawerNavigator = createAppContainer(createDrawerNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
-  Home2: {
-    screen: TestScreen2,
-  }
-}, {
-  drawerPosition: 'left',
-  initialRouteName: 'Home',
-  drawerWidth: 200
-}));
+// class TestScreen extends React.Component {
+//   render() {
+//     return (
+//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//         <Text>Home!</Text>
+//       </View>
+//     );
+//   }
+// }
+// class TestScreen2 extends React.Component {
+//   static navigationOptions = {
+//     drawerLabel: "Screen2"
+//   };
+//   render() {
+//     return (
+//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//         <Text>Home!</Text>
+//       </View>
+//     );
+//   }
+// }
+// const MyDrawerNavigator = createAppContainer(
+// //   createDrawerNavigator({
+// //   Home: {
+// //     screen: HomeScreen,
+// //   },
+// //   Home2: {
+// //     screen: TestScreen2,
+// //   }
+// // }, {
+// //   drawerPosition: 'left',
+// //   initialRouteName: 'Home',
+// //   drawerWidth: 200
+// // })
+// );
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    return <MyDrawerNavigator />;
-    // (
-    //   // <View style={{ flex: 1}}>
-    //     {/* <Toolbar leftElement="arrow-back" centerElement="Icon Toggle" /> */}
-        
-    //   // </View>
-    // );
+    var navigationView = (
+      <View style={{ flex: 1, backgroundColor: "#fff" }}>
+        <Text style={{ margin: 10, fontSize: 15, textAlign: "left" }}>
+          I'm in the Drawer!
+        </Text>
+      </View>
+    );
+    return (
+      <DrawerLayoutAndroid
+        drawerWidth={300}
+        drawerPosition={DrawerLayoutAndroid.positions.Left}
+        renderNavigationView={() => navigationView}
+      >
+        <HomeScreen />
+      
+      </DrawerLayoutAndroid>);
   }
 }
 
